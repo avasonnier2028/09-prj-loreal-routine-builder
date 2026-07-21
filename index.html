@@ -44,8 +44,13 @@
 
       <!-- Selected Products -->
       <div class="selected-products">
-        <h2>Selected Products</h2>
+        <div class="selected-products-header">
+          <h2>Selected Products</h2>
+          <i id="btn-clear-selected" class="fa-regular fa-trash-can"></i>
+        </div>
+
         <div id="selectedProductsList"></div>
+
         <button id="generateRoutine" class="generate-btn">
           <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Routine
         </button>
@@ -53,7 +58,10 @@
 
       <!------- Chat Area ------->
       <section class="chatbox">
-        <h2>Let's Build Your Routine</h2>
+        <div class="chat-header">
+          <h2>Let's Build Your Routine</h2>
+          <i id="complete-reset" class="fa-solid fa-arrow-rotate-left"></i>
+        </div>
         <div id="chatWindow" class="chat-window"></div>
 
         <form id="chatForm" class="chat-form">

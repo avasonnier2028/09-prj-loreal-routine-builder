@@ -12,9 +12,9 @@ Building off from [08-prj-loreal-chatbot](https://github.com/avasonnier2028/08-p
 ### Tasks
 
 - Product Selection
-  - [ ] Select & Unselect
-  - [ ] Updates Visuals
-  - [ ] Adds & Removes from list
+  - [x] Select & Unselect
+  - [x] Updates Visuals
+  - [x] Adds & Removes from list
 - Routine Generator
   - [ ] Sends selected product data
   - [ ] Displays personalized routine
@@ -22,7 +22,7 @@ Building off from [08-prj-loreal-chatbot](https://github.com/avasonnier2028/08-p
 - Save Selected Products
   - [ ] Selections persist on reload
   - [ ] Selections can be removed/cleared
-- [ ] Reveal Product Description
+- [x] Reveal Product Description
 - [ ] Cloudflare Worker Integration
 - [ ] **(BONUS)** Web Search
 - [ ] **(BONUS)** Product Search
@@ -42,6 +42,3 @@ Building off from [08-prj-loreal-chatbot](https://github.com/avasonnier2028/08-p
 | __(BONUS)__ Add Web Search | Chatbot responses include current, real-world information with visible links or citations | 10pts |
 | __(BONUS)__ Add Product Search | Product search field filters products by name or keyword in real-time, displaying matching products seamlessly alongside category filters | 10pts |
 | __(BONUS)__ RTL Language Support | Layout supports right-to-left (RTL) languages. The product grid, selected products section, and chat interface all adjust correctly when RTL is active | 5pts |
-
-
-
