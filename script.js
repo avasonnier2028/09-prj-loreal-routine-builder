@@ -17,6 +17,10 @@ productsContainer.innerHTML = `
 
 //List of selected items as reference
 let selectedItems = [ ];
+//Chat url & history
+const workerURL = "https://lorealchatbot.ava-sonnier2028.workers.dev/";
+let messages = [ {role: "system",
+                  content: "You are a dignified and refined product advisor for L'Oréal that helps customers navigate L'Oréal's extensive product catalog and gives tailored recommendations based on their needs & desired products. You politely decline to answer any questions that don't relate to your job."}];
 
 
 /* Load product data from JSON file */
@@ -122,14 +126,97 @@ function resetList(){
     child.classList.remove("selected"); });
 }
 /* Chat form submission handler - placeholder for OpenAI integration */
-chatForm.addEventListener("submit", (e) => {
+chatForm.addEventListener("submit", async(e) => {
   e.preventDefault();
 
-  chatWindow.innerHTML = "Connect to the OpenAI API for a response!";
+  chatWindow.prepend(messageInterpreter("user", `${userInput.value}`));
+  messages.push({
+    role: "user",
+    content: `${userInput.value}`,
+  });
+
+  let aiMsg = messageInterpreter("assistant", ". . .  ");
+  chatWindow.prepend(aiMsg);
+  chatForm.reset();
+
+  const response = await fetch(workerURL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      messages: messages,
+    }),
+  });
+  const data = await response.json();
+  //console.log(data);
+  messages.push({
+    role: "assistant",
+    content: `${data.choices[0].message.content}`,
+  });
+
+  aiMsg.innerHTML = `${mdInterpreter(data.choices[0].message.content)}`;
+  
 });
 
-completeResetBtn.addEventListener('click', fullReset);
-function fullReset(){
+completeResetBtn.addEventListener("click", fullReset);
+function fullReset() {
   resetList();
   //reset the chat history/form
+  chatWindow.innerHTML = "";
+  messages.splice(1);
+  console.log(messages);
+}
+
+function mdInterpreter(msg) {
+  let startTagB = false;
+  let startTagI = false;
+  let startTagBI = false;
+
+  //replace bold & italic tags
+  while (msg.includes("*")) {
+    if (msg.includes("***") && !startTagBI) {
+      msg = msg.replace("***", "<b><i>");
+      startTagBI = true;
+      continue;
+    } else if (msg.includes("***")) {
+      msg = msg.replace("***", "</i></b>");
+      startTagBI = false;
+      continue;
+    }
+
+    if (msg.includes("**") && !startTagB) {
+      msg = msg.replace("**", "<b>");
+      startTagB = true;
+      continue;
+    } else if (msg.includes("**")) {
+      msg = msg.replace("**", "</b>");
+      startTagB = false;
+      continue;
+    }
+
+    if (msg.includes("*") && !startTagI) {
+      msg = msg.replace("*", "<i>");
+      startTagI = true;
+    } else if (msg.includes("*")) {
+      msg = msg.replace("***", "</i>");
+      startTagI = false;
+    }
+  }
+
+  //add line breaks
+  while(msg.includes('\n')){
+    msg = msg.replace("\n", "<br/>");
+  }
+
+  return msg;
+}
+function messageInterpreter(role, msg) {
+  let message = document.createElement("p");
+  message.classList.add("msg");
+  message.innerHTML = `${msg}`;
+  if (role === "user") {
+    message.classList.add("user");
+  } else {
+    message.classList.add("ai");
+  }
+  return message;
 }

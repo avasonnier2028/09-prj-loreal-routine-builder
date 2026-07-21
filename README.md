@@ -18,12 +18,12 @@ Building off from [08-prj-loreal-chatbot](https://github.com/avasonnier2028/08-p
 - Routine Generator
   - [ ] Sends selected product data
   - [ ] Displays personalized routine
-- [ ] Follow-Up Chat
+- [x] Follow-Up Chat
 - Save Selected Products
   - [ ] Selections persist on reload
   - [ ] Selections can be removed/cleared
 - [x] Reveal Product Description
-- [ ] Cloudflare Worker Integration
+- [x] Cloudflare Worker Integration
 - [ ] **(BONUS)** Web Search
 - [ ] **(BONUS)** Product Search
 - [ ] **(BONUS)** RTL Language Support

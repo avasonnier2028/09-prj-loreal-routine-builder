@@ -112,6 +112,53 @@ body {
   overflow-y: auto;
   background: #fafafa;
   margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.msg {
+  margin-bottom: 14px;
+  line-height: 1.5;
+  padding: 10px;
+  border-radius: 8px;
+  width: fit-content;
+  max-width: 90%;
+
+  position: relative;
+  scroll-snap-align: center;
+}
+
+.msg.user {
+  color: black;
+  text-align: end;
+  margin-left: auto;
+  background-color: #ddd;
+}
+.msg.user::after{
+  content: "";
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  bottom: -20px;
+  right: 5px;
+  background-color: #ddd;
+  clip-path: polygon(100% 100%, 100% 0%, 0% 0%);
+}
+
+.msg.ai {
+  color: black;
+  background-color: var(--gold);
+}
+.msg.ai::before{
+  content: "";
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  bottom: -20px;
+  left: 5px;
+  background-color: var(--gold);
+  clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
 }
 
 /* placeholder message */
