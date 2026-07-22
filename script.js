@@ -291,12 +291,7 @@ function fullReset() {
 }
 
 // Save all data before a page reload/tab close
-let dataSaved = false;
-window.addEventListener("beforeunload", (e) => {
-  if (dataSaved) {
-    event.returnValue = "";
-    return;
-  }
+window.addEventListener("pagehide", (e) => {
   e.preventDefault();
 
   localStorage.setItem("selectedItems", JSON.stringify(selectedItems));
@@ -307,7 +302,6 @@ window.addEventListener("beforeunload", (e) => {
   localStorage.setItem("searchFilter", searchFilter.value);
   localStorage.setItem("categoryFilter", categoryFilter.value);
 
-  dataSaved = true;
   window.location.reload();
 });
 
