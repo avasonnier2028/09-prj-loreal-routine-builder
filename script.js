@@ -294,6 +294,7 @@ function fullReset() {
 let dataSaved = false;
 window.addEventListener("beforeunload", (e) => {
   if (dataSaved) {
+    event.returnValue = "";
     return;
   }
   e.preventDefault();
