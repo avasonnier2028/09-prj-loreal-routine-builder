@@ -16,19 +16,23 @@
   </head>
 
   <body>
-    <div class="page-wrapper">
-      <!------- Header / Branding ------->
+    <!------- Header / Branding ------->
       <header class="site-header">
         <img src="img/loreal-logo.png" alt="L'Oréal Logo" class="logo" />
         <h1 class="site-title">Smart Routine &amp; Product Advisor</h1>
       </header>
-
+    <div class="page-wrapper">
       <!-- Category Filter -->
       <div class="search-section">
+        <div class="input-search">
+          <i class='fa-solid fa-magnifying-glass'></i>
+          <input type="search" id="search-bar" placeholder="Search Products..." autocomplete="off">
+        </div>
         <select id="categoryFilter">
-          <option value="" disabled selected>Choose a Category</option>
+          <option value="null" disabled selected>Categories</option>
           <option value="cleanser">Cleansers</option>
           <option value="moisturizer">Moisturizers & Treatments</option>
+          <option value="skincare">Skincare</option>
           <option value="haircare">Haircare</option>
           <option value="makeup">Makeup</option>
           <option value="hair color">Hair Color</option>
@@ -36,6 +40,7 @@
           <option value="men's grooming">Men's Grooming</option>
           <option value="suncare">Suncare</option>
           <option value="fragrance">Fragrance</option>
+          <option value="all">All Categories</option>
         </select>
       </div>
 

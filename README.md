@@ -16,17 +16,17 @@ Building off from [08-prj-loreal-chatbot](https://github.com/avasonnier2028/08-p
   - [x] Updates Visuals
   - [x] Adds & Removes from list
 - Routine Generator
-  - [ ] Sends selected product data
-  - [ ] Displays personalized routine
+  - [x] Sends selected product data
+  - [x] Displays personalized routine
 - [x] Follow-Up Chat
 - Save Selected Products
-  - [ ] Selections persist on reload
-  - [ ] Selections can be removed/cleared
+  - [x] Selections persist on reload
+  - [x] Selections can be removed/cleared
 - [x] Reveal Product Description
 - [x] Cloudflare Worker Integration
-- [ ] **(BONUS)** Web Search
-- [ ] **(BONUS)** Product Search
-- [ ] **(BONUS)** RTL Language Support
+- [x] **(BONUS)** Web Search
+- [x] **(BONUS)** Product Search
+- [x] **(BONUS)** RTL Language Support
 
 ## 
 

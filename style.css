@@ -13,13 +13,13 @@
 body {
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
   color: #333;
-  display: flex;
-  justify-content: center;
+  
 }
 
 .page-wrapper {
   width: 90%;
   max-width: 900px;
+  margin: 0 auto;
 }
 
 /* header */
@@ -27,6 +27,19 @@ body {
   text-align: center;
   padding-top: 50px;
   padding-bottom: 10px;
+  background-color: #eee;
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.site-header::after{
+  content: "";
+  position: absolute;
+  bottom: -70px;
+  left: 0;
+  background-color: #eee;
+  height: 80px;
+  width: 100%;
 }
 
 .logo {
@@ -44,17 +57,47 @@ body {
 .search-section {
   margin: 30px 0;
   display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-search{
+  width: 68%;
+  position: relative;
+}
+.search-section i{
+  position: absolute;
+  font-size: 25px;
+  top: 15px;
+  margin-inline-start: 15px;
+}
+
+.search-section input{
+  width: 100%;
+  padding-inline-start: 60px;
+  padding-inline-end: 20px;
+  font-size: 18px;
+  height: 60px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  background: white;
+}
+.search-section input:focus {
+  outline: none;
+  border-bottom-color: #000;
 }
 
 .search-section select {
-  width: 100%;
+  width: 30%;
+  height: 60px;
   padding: 16px;
   font-size: 18px;
-  border: 2px solid #000;
-  border-radius: 8px;
   cursor: pointer;
-  background-color: white;
   font-weight: 500;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  background: white;
 }
 
 .search-section select:focus {
@@ -91,7 +134,7 @@ body {
     opacity: 0;
 
     bottom: -60px;
-    left: -25px;
+    inset-inline-start: -25px;
     pointer-events: none;
   }
   i:hover::after{
@@ -112,13 +155,10 @@ body {
   overflow-y: auto;
   background: #fafafa;
   margin-bottom: 20px;
-
-  display: flex;
-  flex-direction: column-reverse;
 }
 
 .msg {
-  margin-bottom: 14px;
+  margin-bottom: 20px;
   line-height: 1.5;
   padding: 10px;
   border-radius: 8px;
@@ -132,7 +172,7 @@ body {
 .msg.user {
   color: black;
   text-align: end;
-  margin-left: auto;
+  margin-inline-start: auto;
   background-color: #ddd;
 }
 .msg.user::after{
@@ -141,9 +181,20 @@ body {
   width: 30px;
   position: absolute;
   bottom: -20px;
-  right: 5px;
+  inset-inline-end: 5px;
   background-color: #ddd;
   clip-path: polygon(100% 100%, 100% 0%, 0% 0%);
+}
+[dir="rtl"] .msg.user::after{
+  clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+}
+
+.msg.gen{
+  background-color: var(--red);
+  color: white;
+}
+.msg.gen::after{
+  background-color: var(--red);
 }
 
 .msg.ai {
@@ -156,9 +207,12 @@ body {
   width: 30px;
   position: absolute;
   bottom: -20px;
-  left: 5px;
+  inset-inline-start: 5px;
   background-color: var(--gold);
   clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+}
+[dir="rtl"] .msg.ai::before{
+  clip-path: polygon(100% 100%, 100% 0%, 0% 0%);
 }
 
 /* placeholder message */
@@ -288,7 +342,8 @@ body {
 .description{
   position: absolute;
   max-height: calc(100% - 25px);
-  margin: 25px 15px 25px 0;
+  margin: 25px 0;
+  margin-inline-end: 15px;
 
   opacity: 0%;
   transition: all 0.2s ease-out;
@@ -351,7 +406,7 @@ body {
     opacity: 0;
 
     bottom: -50px;
-    left: -15px;
+    inset-inline-start: -15px;
     pointer-events: none;
   }
   i:hover::after{
@@ -404,5 +459,5 @@ body {
 }
 
 .generate-btn i {
-  margin-right: 8px;
+  margin-inline-end: 8px;
 }
