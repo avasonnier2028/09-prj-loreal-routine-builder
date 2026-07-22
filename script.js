@@ -53,9 +53,12 @@ let messages = JSON.parse(localStorage.getItem("messagesArr")) || [
 //reload html where appropriate
 selectedList.innerHTML = localStorage.getItem("selectedList") || "";
 productsContainer.innerHTML = localStorage.getItem("productsContainer") || "";
-chatWindow.innerHTML = localStorage.getItem("chatWindow") || "";
 searchFilter.value = localStorage.getItem("searchFilter") || "";
 categoryFilter.value = localStorage.getItem("categoryFilter") || "null";
+
+if(messages.length > 1){
+  repopulateChat(messages);
+}
 
 /* Load product data from JSON file */
 async function loadProducts() {
@@ -237,7 +240,7 @@ genRoutine.addEventListener("click", () => {
   sendGetMsg();
 });
 
-//Functin for sending a message to teh endpoint & getting the response
+//Functin for sending a message to the endpoint & getting the response
 async function sendGetMsg() {
   let aiMsg = messageInterpreter("assistant", ". . .  ");
   chatWindow.appendChild(aiMsg);
@@ -299,7 +302,6 @@ window.addEventListener("beforeunload", (e) => {
   localStorage.setItem("selectedList", selectedList.innerHTML);
   localStorage.setItem("productsContainer", productsContainer.innerHTML);
 
-  localStorage.setItem("chatWindow", chatWindow.innerHTML);
   localStorage.setItem("messagesArr", JSON.stringify(messages));
   localStorage.setItem("searchFilter", searchFilter.value);
   localStorage.setItem("categoryFilter", categoryFilter.value);
@@ -380,4 +382,21 @@ function messageInterpreter(role, msg) {
     message.classList.add("ai");
   }
   return message;
+}
+
+function repopulateChat(msgs){
+  //skip the system message
+  let msg;
+  for(i=1; i < msgs.length; i++){
+    msg = msgs[i];
+    if(msg.role === "assistant"){
+      chatWindow.appendChild(
+        messageInterpreter("assistant", `${mdInterpreter(msg.content)}`),
+      );
+    }else if(msg.role === "system"){
+      chatWindow.appendChild(messageInterpreter("generate", "<i>~~ Generate My Routine ~~</i>"));
+    }else{
+      chatWindow.appendChild(messageInterpreter("user", `${msg.content}`));
+    }
+  }
 }
